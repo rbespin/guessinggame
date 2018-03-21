@@ -7,6 +7,8 @@ public class Guess{
    private int guess;
    private int lowerBound;
    private int upperBound;
+   private int gameNumber;
+   private Random random = new Random();
 
    public Guess(){
       this.lowerBound = 0;
@@ -24,6 +26,16 @@ public class Guess{
       this.setGuess(guess);
       this.setLowerBound(lowerBound);
       this.setUpperBound(upperBound);
+      this.setGameNumber(upperBound);
+
+   }
+
+   public void setGameNumber(int upperBound){
+      this.gameNumber = random.nextInt(upperBound+1);
+   }
+
+   public int getGameNumber(){
+      return this.gameNumber;
    }
 
    public void setGuess(int guess){
@@ -49,6 +61,7 @@ public class Guess{
    public int getUpperBound(){
       return this.upperBound;
    }
+
    public  void ensureBounds(int lowerBound, int upperBound){
       Scanner input = new Scanner(System.in);
       if(upperBound <= lowerBound){
@@ -154,6 +167,15 @@ public class Guess{
 
       int randomNumber = random.nextInt(newGame.getUpperBound() + 1);
       newGame.recursiveGuess(randomNumber);
+   }
+   public boolean isGameOver(){
+      if(this.getGuess() == this.getGameNumber()){
+         System.out.println("Congratulations! You guessed correctly! The number was: " + 
+               guess);
+         return true;
+      }
+      else{return false;}
+
    }
 
 
